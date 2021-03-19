@@ -13,7 +13,11 @@ class CartItem extends React.Component{
     }
 
     increaseQuantity= ()=>{   //Arrow functions automatically bind this with the object instance
-        console.log(this.state);
+        this.setState((prevState)=>{
+            return {
+                qty:prevState.qty+1
+            }
+        });
     }
     render(){
         const { price,title,qty}=this.state; //object destructuring
@@ -43,9 +47,9 @@ class CartItem extends React.Component{
 
                         />
                         <img 
-                        alt="delete" cl
-                        assName="action-icons" sr
-                        c="https://www.flaticon.com/svg/vstatic/svg/3096/3096673.svg?token=exp=1616153730~hmac=8652030389c7d736ccb1039d6bd099e5"
+                        alt="delete" 
+                        className="action-icons"
+                        src="https://www.flaticon.com/svg/vstatic/svg/3096/3096673.svg?token=exp=1616153730~hmac=8652030389c7d736ccb1039d6bd099e5"
 
                         />
 
