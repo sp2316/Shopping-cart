@@ -22,17 +22,14 @@ class CartItem extends React.Component{
 
     decreaseQuantity= ()=>{
         const {qty} =this.state;
+        if(qty==0){
+            return;
+        }
         this.setState((prevState)=>{
-            if(prevState.qty>1){
             return {
                 qty:prevState.qty-1
             }
-        }
-        else{
-            return {
-                qty:prevState.qty
-            }
-        }
+        
         });
     }
     render(){
@@ -53,19 +50,19 @@ class CartItem extends React.Component{
                         <img 
                         alt="increase" 
                         className="action-icons" 
-                        src="https://www.flaticon.com/svg/vstatic/svg/1828/1828925.svg?token=exp=1616153764~hmac=9f79bdd355c043f1d19866f8febd8e80"
+                        src="https://www.flaticon.com/svg/vstatic/svg/1828/1828926.svg?token=exp=1616661617~hmac=44007b9e8a2756153154fe3f2575c892"
                         onClick={this.increaseQuantity}
                         />
                         <img 
                         alt="decrease" 
                         className="action-icons" 
-                        src="https://as1.ftcdn.net/jpg/03/73/49/86/500_F_373498649_nBxauQ0ipBSVrVcMpWWVmTpXu3BLvRyY.jpg"
+                        src="https://www.flaticon.com/svg/vstatic/svg/992/992683.svg?token=exp=1616661694~hmac=becce75e4de3a39691944b3fbc981468"
                         onClick={this.decreaseQuantity}
                         />
                         <img 
                         alt="delete" 
                         className="action-icons"
-                        src="https://www.flaticon.com/svg/vstatic/svg/3096/3096673.svg?token=exp=1616153730~hmac=8652030389c7d736ccb1039d6bd099e5"
+                        src="https://www.flaticon.com/svg/vstatic/svg/1345/1345823.svg?token=exp=1616661668~hmac=c3ddc887fd748acc39d3c26650c50a9d"
 
                         />
 
