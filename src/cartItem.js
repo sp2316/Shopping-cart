@@ -2,15 +2,6 @@ import React from 'react';
 
 class CartItem extends React.Component{
 
-    constructor(){
-        super();
-        this.state={
-            price:999,
-            title:'Phone',
-            qty:1,
-            img:''
-        }
-    }
 
     increaseQuantity= ()=>{   //Arrow functions automatically bind this with the object instance
         this.setState((prevState)=>{
@@ -33,7 +24,8 @@ class CartItem extends React.Component{
         });
     }
     render(){
-        const { price,title,qty}=this.state; //object destructuring
+        console.log('this.props',this.props);
+        const { price,title,qty}=this.props.product; //object destructuring
         return(
  
             <div className="cart-item">
@@ -63,7 +55,6 @@ class CartItem extends React.Component{
                         alt="delete" 
                         className="action-icons"
                         src="https://www.flaticon.com/svg/vstatic/svg/1345/1345823.svg?token=exp=1616661668~hmac=c3ddc887fd748acc39d3c26650c50a9d"
-
                         />
 
                     </div>
