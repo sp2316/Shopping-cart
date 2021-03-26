@@ -1,37 +1,14 @@
 import React from 'react';
 
-class CartItem extends React.Component{
+const CartItem = (props)=>{
 
-
-    increaseQuantity= ()=>{   //Arrow functions automatically bind this with the object instance
-        this.setState((prevState)=>{
-            return {
-                qty:prevState.qty+1
-            }
-        });
-    }
-
-    decreaseQuantity= ()=>{
-        const {qty} =this.state;
-        if(qty==0){
-            return;
-        }
-        this.setState((prevState)=>{
-            return {
-                qty:prevState.qty-1
-            }
-        
-        });
-    }
-    render(){
-        console.log('this.props',this.props);
-        const { price,title,qty}=this.props.product; //object destructuring
+        const { price,title,qty}=props.product; //object destructuring
         const {
             product,
             onIncreaseQuantity,
             onDecreaseQuantity,
             onDeleteProduct
-        }=this.props;
+        }=props;
         return(
  
             <div className="cart-item">
@@ -70,7 +47,7 @@ class CartItem extends React.Component{
             </div>
         );
     }
-}
+
 
 const styles={
     images:{
