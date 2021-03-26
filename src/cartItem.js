@@ -2,7 +2,7 @@ import React from 'react';
 
 const CartItem = (props)=>{
 
-        const { price,title,qty}=props.product; //object destructuring
+        const { price,title,qty}=props.product;
         const {
             product,
             onIncreaseQuantity,
