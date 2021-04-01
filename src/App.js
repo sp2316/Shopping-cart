@@ -73,6 +73,7 @@ class App extends React.Component {
 
     return count;
   }
+  
   getCartTotal=()=>{
     const {products}=this.state;
     let cartTotal=0;
@@ -82,6 +83,7 @@ class App extends React.Component {
     return cartTotal;
   }
   render(){
+    
     const {products}=this.state;
   return (
       <div className="App">
