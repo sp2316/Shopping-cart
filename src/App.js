@@ -11,6 +11,7 @@ class App extends React.Component {
         loading:true
         
     }
+    this.db=firebase.firestore();
 }
 
   componentDidMount(){
@@ -36,8 +37,7 @@ class App extends React.Component {
     //     })
     //   })
 
-    firebase
-    .firestore()
+    this.db
     .collection('products')
     .onSnapshot((snapshot)=>{
          console.log(snapshot);
@@ -70,7 +70,7 @@ class App extends React.Component {
   handleDecreaseQuantity=(product)=>{
       const {products}=this.state;
       const index=products.indexOf(product);
-      if(products[index].qty==0){
+      if(products[index].qty===0){
           return;
       }
       products[index].qty-=1;
@@ -108,12 +108,34 @@ class App extends React.Component {
     })
     return cartTotal;
   }
+
+  addProduct=()=>{
+
+    this.db
+     .collection('products')
+     .add({
+       img:'',
+       price:900,
+       qty:4,
+       title:'Washing Machine'
+     })
+     .then((docRef)=>{
+      console.log('product has been added',docRef);
+     })
+     .catch((err)=>{
+       console.log('Error',err);
+     })
+
+
+
+  }
   render(){
 
     const {products,loading}=this.state;
   return (
       <div className="App">
        <Navbar count={this.getCartCount()}/>
+       <button onClick={this.addProduct} style={{padding:20,fontSize:20}}>Add a Product</button>
        <Cart 
        products={products}
        onIncreaseQuantity={this.handleIncreaseQuantity}
