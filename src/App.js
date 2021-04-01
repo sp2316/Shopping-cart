@@ -15,27 +15,6 @@ class App extends React.Component {
 }
 
   componentDidMount(){
-    // firebase
-    //   .firestore()
-    //   .collection('products')
-    //   .get()
-    //   .then((snapshot)=>{
-    //       console.log(snapshot);
-    //       snapshot.docs.map((doc)=>{
-    //         console.log(doc.data());
-    //       });
-          
-    //     const products=snapshot.docs.map((doc)=>{
-    //       const data = doc.data();
-    //       data['id']=doc.id;
-    //       return data;
-    //     })
-
-    //     this.setState({
-    //       products,
-    //       loading:false
-    //     })
-    //   })
 
     this.db
     .collection('products')
@@ -58,41 +37,58 @@ class App extends React.Component {
     })
 
   }
+
   handleIncreaseQuantity=(product)=>{
       const {products}=this.state;
       const index = products.indexOf(product);
 
       const docRef=this.db.collection('products').doc(products[index].id);
+      
       docRef
-      .update({
-        qty:products[index].qty + 1
-      })
-      .then(()=>{
-          console.log('Document Updated Successfully')
-      })
-      .catch((err)=>{
-        console.log('Error',err);
-      })
+        .update({
+          qty:products[index].qty + 1
+        })
+        .then(()=>{
+            console.log('Document Updated Successfully')
+        })
+        .catch((err)=>{
+          console.log('Error',err);
+        })
     }
 
   handleDecreaseQuantity=(product)=>{
       const {products}=this.state;
       const index=products.indexOf(product);
+
       if(products[index].qty===0){
-          return;
-      }
-      products[index].qty-=1;
-      this.setState({
-          products
-      })
+        return;
+    }
+    
+      const docRef= this.db.collection('products').doc(products[index].id);
+      
+      docRef
+        .update({
+          qty:products[index].qty-1
+        })
+        .then(()=>{
+          console.log('Document Updated Successfully')
+       })
+       .catch((err)=>{
+        console.log('Error',err);
+        })
   }
 
   handleDeleteProduct=(id)=>{
       const {products}=this.state;
-      const items =products.filter((item)=> item.id !== id);
-      
-      this.setState({
-          products:items
+      const docRef= this.db.collection('products').doc(id);
+
+      docRef
+      .delete()
+      .then(()=>{
+        console.log('Document Updated Successfully')
+       })
+     .catch((err)=>{
+      console.log('Error',err);
       })
 
   }
